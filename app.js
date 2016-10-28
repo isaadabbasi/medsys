@@ -52,6 +52,8 @@ var server = http.createServer(app);
 var socketio = io(server);
 
 app.use('/users', users(express, mongoose, socketio));
+
+require('./socket/app_socket.js')(socketio);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
