@@ -45,12 +45,13 @@ mongoose.connection
 */
 var port = process.env.PORT || '3000';
 app.set('port', port);
-app.use('/users', users);
+
 
 var server = http.createServer(app);
 
-io(server);
+var socketio = io(server);
 
+app.use('/users', users(express, mongoose, socketio));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
