@@ -1,8 +1,23 @@
+var connectedUsers = 0;
 module.exports = function(socketio){
+    
+    
     socketio.on('connection', function(socket){
-    console.log('SOCKET -> '+ socket.length +' USER CONNECTED');
+    ++connectedUsers;
+    console.log('SOCKET -> '+ connectedUsers +' USER CONNECTED');
+    
+    socket.on('message', function(message){
+      if( message && typeof message == 'string' ){
+        console.log('200 '+message);
+        socketio.emit('message', message)
+      }
+    })
+    
     socket.on('disconnect', function(){
-      console.log('user disconnected');
+      --connectedUsers;
+      console.log('user disconnected __ connected users: '+connectedUsers);
     });
+
+
 });
 }

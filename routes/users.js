@@ -9,6 +9,14 @@ module.exports = function(express, mongoose, socketio){
       last: "Smith"
     });
   });
+
+  router.get('/bb', function(req, res, next){
+    console.log('/users');
+    res.json({
+      username: 'saadabbasi',
+      id: 11
+    })
+  });
   
   
   

@@ -1,7 +1,7 @@
 "use strict";
-const router_1 = require('@angular/router');
-const home_component_1 = require('./components/home/home.component');
-const about_component_1 = require('./components/about/about.component');
+var router_1 = require('@angular/router');
+var home_component_1 = require('./components/home/home.component');
+var about_component_1 = require('./components/about/about.component');
 exports.routes = [
     { path: '', component: home_component_1.HomeComponent, terminal: true },
     { path: 'about', component: about_component_1.AboutComponent }

@@ -8,23 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-let AboutComponent = class AboutComponent {
-    constructor(params) {
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+// import * as io from 'socket.io-client/socket.io';
+var AboutComponent = (function () {
+    function AboutComponent(params) {
+        var _this = this;
         this.params = params;
         this.name = "About Us";
         params.params
-            .subscribe((data) => this.param = data.id);
+            .subscribe(function (data) { return _this.param = data.id; });
+        var socket = "";
     }
-};
-AboutComponent = __decorate([
-    core_1.Component({
-        selector: 'my-about',
-        templateUrl: 'components/about/about.component.html',
-        styleUrls: ['components/about/about.component.css']
-    }), 
-    __metadata('design:paramtypes', [router_1.ActivatedRoute])
-], AboutComponent);
+    AboutComponent.prototype.ngOnInit = function () {
+    };
+    AboutComponent = __decorate([
+        core_1.Component({
+            selector: 'my-about',
+            templateUrl: 'components/about/about.component.html',
+            styleUrls: ['components/about/about.component.css']
+        }), 
+        __metadata('design:paramtypes', [router_1.ActivatedRoute])
+    ], AboutComponent);
+    return AboutComponent;
+}());
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map

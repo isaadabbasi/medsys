@@ -8,30 +8,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const router_1 = require('@angular/router');
-let AppComponent = class AppComponent {
-    constructor() {
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var io = require('socket.io-client');
+var http_1 = require("@angular/http");
+require('rxjs/add/operator/map');
+var AppComponent = (function () {
+    function AppComponent(_http) {
+        var _this = this;
+        this._http = _http;
         this.name = "Angular 2 on Express";
+        this.message = null;
+        this.socket = null;
+        this.socket = io('http://localhost:3000');
+        this.socket.on('message', function (msg) {
+            _this.message = msg;
+            console.log('RCV : ', msg);
+        });
     }
-};
-AppComponent = __decorate([
-    core_1.Component({
-        directives: [router_1.ROUTER_DIRECTIVES],
-        selector: 'my-app',
-        styles: [`h1 {
-	color: white;
-	background: darkgray;
-	padding: 20px;
-}
-`],
-        template: `
-<h1>My First {{name}} app</h1>
-<router-outlet></router-outlet>
-
-<a [routerLink]="['/']">Home</a> | <a [routerLink]="['/about/', { id: 2 }]">About</a>`,
-    }), 
-    __metadata('design:paramtypes', [])
-], AppComponent);
+    AppComponent.prototype.getUsers = function (message) {
+        this.socket.emit('message', message);
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            directives: [router_1.ROUTER_DIRECTIVES],
+            selector: 'my-app',
+            styles: ["h1 {\n\tcolor: white;\n\tbackground: darkgray;\n\tpadding: 20px;\n}\n"],
+            template: "\n<h1>My First {{name}} app</h1>\n<router-outlet></router-outlet>\n{{message}} <br>  \n<a [routerLink]=\"['/']\">Home</a> | <a [routerLink]=\"['/about/', { id: 2 }]\">About</a> | &nbsp; <input #f type=\"text\" > <button class=\"btn btn-primary\" (click)=\"getUsers(f.value)\">Message</button>",
+        }), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], AppComponent);
+    return AppComponent;
+}());
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

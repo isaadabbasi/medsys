@@ -16,7 +16,12 @@ var isPublic = typeof window != "undefined";
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' }
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+    "socket.io-client": {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: 'socket.io.js'
+}
   };
   var ngPackageNames = [
     'common',
@@ -28,7 +33,8 @@ var isPublic = typeof window != "undefined";
     'platform-browser-dynamic',
     'router',
     'router-deprecated',
-    'upgrade'
+    'upgrade',
+    'socket.io-client'
   ];
 
   // Individual files (~300 requests):
@@ -45,6 +51,7 @@ var isPublic = typeof window != "undefined";
   ngPackageNames.forEach(setPackageConfig);
   var config = {
     map: map,
+    'socket.io-client': 'vendor/socket.io-client',
     packages: packages
   };
   System.config(config);

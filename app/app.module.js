@@ -8,31 +8,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const platform_browser_1 = require('@angular/platform-browser');
-const http_1 = require('@angular/http');
-const app_component_1 = require('./app.component');
-const about_component_1 = require("./components/about/about.component");
-const routes_1 = require("./routes");
-const home_component_1 = require("./components/home/home.component");
-let AppModule = class AppModule {
-};
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            http_1.HttpModule,
-            http_1.JsonpModule,
-            routes_1.routing
-        ],
-        declarations: [
-            app_component_1.AppComponent,
-            about_component_1.AboutComponent,
-            home_component_1.HomeComponent
-        ],
-        bootstrap: [app_component_1.AppComponent]
-    }), 
-    __metadata('design:paramtypes', [])
-], AppModule);
+var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
+var app_component_1 = require('./app.component');
+var about_component_1 = require("./components/about/about.component");
+var routes_1 = require("./routes");
+var home_component_1 = require("./components/home/home.component");
+var AppModule = (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                http_1.JsonpModule,
+                routes_1.routing
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+                about_component_1.AboutComponent,
+                home_component_1.HomeComponent
+            ],
+            bootstrap: [app_component_1.AppComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppModule);
+    return AppModule;
+}());
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

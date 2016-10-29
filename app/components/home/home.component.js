@@ -8,24 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require("@angular/http");
+var core_1 = require('@angular/core');
+var http_1 = require("@angular/http");
 require('rxjs/add/operator/map');
-let HomeComponent = class HomeComponent {
-    constructor(http) {
+var HomeComponent = (function () {
+    function HomeComponent(http) {
+        var _this = this;
         this.name = "Home page";
         http.get("/users")
-            .map(data => data.json())
-            .subscribe((data) => this.users = data);
+            .map(function (data) { return data.json(); })
+            .subscribe(function (data) { return _this.users = data; });
     }
-};
-HomeComponent = __decorate([
-    core_1.Component({
-        selector: 'my-home',
-        templateUrl: 'components/home/home.component.html',
-        styleUrls: ['components/home/home.component.css']
-    }), 
-    __metadata('design:paramtypes', [http_1.Http])
-], HomeComponent);
+    HomeComponent = __decorate([
+        core_1.Component({
+            selector: 'my-home',
+            templateUrl: 'components/home/home.component.html',
+            styleUrls: ['components/home/home.component.css']
+        }), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], HomeComponent);
+    return HomeComponent;
+}());
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map
