@@ -15,17 +15,19 @@ var http_1 = require("@angular/http");
 require('rxjs/add/operator/map');
 var AppComponent = (function () {
     function AppComponent(_http) {
-        var _this = this;
         this._http = _http;
         this.name = "Angular 2 on Express";
         this.message = null;
         this.socket = null;
+    }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.socket = io('http://localhost:3000');
         this.socket.on('message', function (msg) {
             _this.message = msg;
             console.log('RCV : ', msg);
         });
-    }
+    };
     AppComponent.prototype.getUsers = function (message) {
         this.socket.emit('message', message);
     };
@@ -34,7 +36,7 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES],
             selector: 'my-app',
             styles: ["h1 {\n\tcolor: white;\n\tbackground: darkgray;\n\tpadding: 20px;\n}\n"],
-            template: "\n<h1>My First {{name}} app</h1>\n<router-outlet></router-outlet>\n{{message}} <br>  \n<a [routerLink]=\"['/']\">Home</a> | <a [routerLink]=\"['/about/', { id: 2 }]\">About</a> | &nbsp; <input #f type=\"text\" > <button class=\"btn btn-primary\" (click)=\"getUsers(f.value)\">Message</button>",
+            template: "\n<h1>My First {{name}} app</h1>\n<router-outlet></router-outlet>\n{{message}} <br>  \n<a [routerLink]=\"['/']\">Home</a> | <a [routerLink]=\"['/add_doc/', { id: 2 }]\">Add Doctor</a> | &nbsp; <input #f type=\"text\" > <button class=\"btn btn-primary\" (click)=\"getUsers(f.value)\">Message</button>",
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], AppComponent);
