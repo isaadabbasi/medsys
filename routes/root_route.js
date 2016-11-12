@@ -1,7 +1,7 @@
 module.exports = function(express, mongoose, socketio){
   var router = express.Router();
   var admin = require('../dbmodels/admin.js');
-//   var doctor = require('../dbmodels/doctor.js');
+  var doctor = require('../dbmodels/doctor.js');
 //   var patient = require('../dbmodels/patient.js');
   /* GET users listing. */
 
@@ -27,5 +27,19 @@ module.exports = function(express, mongoose, socketio){
       console.log('ROUTE HIT - EMPTY');
     }
   })
+
+  router.get('/getdocs', (req, res)=>{
+    
+    // try {
+    //   doctor.find({"":""}, (err, results)=>{
+    //     if(err) console.log(err);
+        
+    //     res.status(200).json(res);
+    //   })
+    // } catch(exception){
+    //   console.log("EXCEPTION THROWN : ", exception);
+    // }
+  })
+
   return router;
 }

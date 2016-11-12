@@ -20,5 +20,6 @@ module.exports = function(express, mongoose, socketio){
       console.log('ROUTE HIT - EMPTY');
     }
   })
+
   return router;
 }

@@ -4,12 +4,13 @@ var home_component_1 = require('./components/home/home.component');
 var about_component_1 = require('./components/about/about.component');
 var create_doctor_component_1 = require('./components/create_doctor/create_doctor.component');
 var login_component_1 = require('./components/login/login.component');
+var showdoc_component_1 = require('./components/doctors/showdoc.component');
 exports.routes = [
     { path: '', component: login_component_1.LoginComponent, terminal: true },
     { path: 'about', component: about_component_1.AboutComponent },
     { path: 'add_doc', component: create_doctor_component_1.CreateDoctor },
     { path: 'home', component: home_component_1.HomeComponent, children: [{
-                path: 'add', component: create_doctor_component_1.CreateDoctor
+                path: 'showdoc', component: showdoc_component_1.ShowDoctorComponent
             }] }
 ];
 exports.routing = router_1.RouterModule.forRoot(exports.routes, { useHash: true });

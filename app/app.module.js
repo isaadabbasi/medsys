@@ -18,6 +18,7 @@ var create_doctor_component_1 = require("./components/create_doctor/create_docto
 var home_component_1 = require("./components/home/home.component");
 var login_component_1 = require("./components/login/login.component");
 var navbar_component_1 = require('./components/navbar/navbar.component');
+var showdoc_component_1 = require('./components/doctors/showdoc.component');
 var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
@@ -37,6 +38,7 @@ var AppModule = (function () {
                 create_doctor_component_1.CreateDoctor,
                 login_component_1.LoginComponent,
                 home_component_1.HomeComponent,
+                showdoc_component_1.ShowDoctorComponent,
                 navbar_component_1.NavbarComponent
             ],
             bootstrap: [app_component_1.AppComponent]

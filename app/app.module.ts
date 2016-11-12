@@ -10,6 +10,7 @@ import { CreateDoctor } from "./components/create_doctor/create_doctor.component
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavbarComponent } from './components/navbar/navbar.component'
+import { ShowDoctorComponent } from './components/doctors/showdoc.component'
 import { routing } from "./routes";
 
 @NgModule({
@@ -26,6 +27,7 @@ import { routing } from "./routes";
         CreateDoctor,
         LoginComponent,
         HomeComponent,  
+        ShowDoctorComponent,
         NavbarComponent
     ],
     bootstrap: [ AppComponent ]
