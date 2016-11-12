@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
+var router_1 = require("@angular/router");
 var LoginComponent = (function () {
-    function LoginComponent(_http) {
+    function LoginComponent(_http, router) {
         this._http = _http;
+        this.router = router;
         this.admin = {
             username: '',
             password: ''
@@ -29,7 +31,10 @@ var LoginComponent = (function () {
                 console.log('res: ', res);
                 console.log('res.status: ', res.status);
                 _this.response = res;
-                (function () { this.response = undefined; }, 2000);
+                setTimeout(function () { return _this.response = undefined; }, 2000);
+                if (_this.response.status == 200)
+                    localStorage.setItem('admin_auth', 'blah');
+                _this.router.navigate(['/']);
             });
     };
     LoginComponent = __decorate([
@@ -37,7 +42,7 @@ var LoginComponent = (function () {
             selector: 'login',
             templateUrl: './components/login/login.template.html'
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());

@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { Router } from "@angular/router";
+import {LoginResponse} from './../models/responses';
+import { Admin } from './../models/roles'
 @Component({
     selector: 'login',
     templateUrl: './components/login/login.template.html'
-
 })
 export class LoginComponent implements OnInit {
-    admin: Object = {
+    admin: Admin = {
     username: '',
     password: ''
     };
-    response: Object;
+    response: LoginResponse ;
 
-    constructor(private _http: Http) {
-
-     }
+    constructor(private _http: Http, private router: Router) {}
 
     ngOnInit() { }
 
@@ -28,7 +27,10 @@ export class LoginComponent implements OnInit {
                         console.log('res: ', res);
                         console.log('res.status: ', res.status);
                         this.response = res;
-                        (function(){this.response = undefined;},2000);
+                        setTimeout(() => this.response = undefined, 2000);
+                        if(this.response.status == 200)
+                            localStorage.setItem('admin_auth', 'blah');
+                            this.router.navigate(['/'])
                     });
-    }
+         }
 }

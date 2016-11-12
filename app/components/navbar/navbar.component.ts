@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
             <ul class="nav navbar-nav">
                 <li class="active"><a [routerLink]="['/']">Home <span class="sr-only">(current)</span></a></li>
                 <li><a [routerLink]="['/login']" >Login</a></li>
-                <li><a [routerLink]="['/dashboard']" >Dashboard</a></li>
+                <li><a [routerLink]="['/dashboard']" *ngIf="checkAdminAuth()">Dashboard</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right pull-right">
@@ -44,5 +44,12 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
     constructor() { }
 
-    ngOnInit() { }
+
+    ngOnInit() { 
+        console.log()
+    }
+    checkAdminAuth(){
+        return localStorage.getItem('admin_auth');  
+    }
+    
 }
