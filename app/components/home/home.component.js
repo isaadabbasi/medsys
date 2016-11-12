@@ -12,13 +12,19 @@ var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 require('rxjs/add/operator/map');
 var HomeComponent = (function () {
-    function HomeComponent(http) {
+    function HomeComponent(_http) {
         var _this = this;
+        this._http = _http;
         this.name = "Home page";
-        http.get("/users")
+        _http.get("/users")
             .map(function (data) { return data.json(); })
             .subscribe(function (data) { return _this.users = data; });
     }
+    HomeComponent.prototype.sendPostRequest = function () {
+        this._http.post('/adddoctor', { email: 'itsssaad', password: 123 })
+            .map(function (data) { return data.json(); })
+            .subscribe(function (data) { return console.log(data); });
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'my-home',

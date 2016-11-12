@@ -10,6 +10,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/medical');
 var users = require('./routes/users');
 
+var root_route = require('./routes/root_route');
+
 var app = express();
 
 if (app.get('env') !== 'production') {
@@ -50,10 +52,11 @@ app.set('port', port);
 var server = http.createServer(app);
 
 var socketio = io(server);
-
+app.use('/', root_route(express, mongoose, socketio));
 app.use('/users', users(express, mongoose, socketio));
 
 require('./socket/app_socket.js')(socketio);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

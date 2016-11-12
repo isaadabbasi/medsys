@@ -14,9 +14,11 @@ var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var about_component_1 = require("./components/about/about.component");
-var routes_1 = require("./routes");
-var home_component_1 = require("./components/home/home.component");
 var create_doctor_component_1 = require("./components/create_doctor/create_doctor.component");
+var home_component_1 = require("./components/home/home.component");
+var login_component_1 = require("./components/login/login.component");
+var navbar_component_1 = require('./components/navbar/navbar.component');
+var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,8 +34,10 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 about_component_1.AboutComponent,
+                create_doctor_component_1.CreateDoctor,
+                login_component_1.LoginComponent,
                 home_component_1.HomeComponent,
-                create_doctor_component_1.CreateDoctor
+                navbar_component_1.NavbarComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

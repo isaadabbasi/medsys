@@ -11,9 +11,15 @@ export class HomeComponent {
     name: string = "Home page";
     users: {};
 
-    constructor(http: Http) {
-        http.get("/users")
+    constructor(private _http: Http) {
+        _http.get("/users")
             .map(data => data.json())
             .subscribe((data) => this.users = data);
+    }
+
+    sendPostRequest(){
+        this._http.post('/adddoctor', {email: 'itsssaad', password: 123})
+            .map(data => data.json())
+                .subscribe(data => console.log(data));
     }
 }

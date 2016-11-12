@@ -13,7 +13,7 @@ module.exports = function(express, mongoose, socketio){
     });
   });
 
-  router.post('/users/add_doctor', (req,res, next) => {
+  router.post('/users/adddoctor', (req,res, next) => {
     if(req.body && typeof req.body == 'Object'){
       console.log(req.body);
     } else {

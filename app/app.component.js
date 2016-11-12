@@ -36,7 +36,7 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES],
             selector: 'my-app',
             styles: ["h1 {\n\tcolor: white;\n\tbackground: darkgray;\n\tpadding: 20px;\n}\n"],
-            template: "\n<h1>My First {{name}} app</h1>\n<router-outlet></router-outlet>\n{{message}} <br>  \n<a [routerLink]=\"['/']\">Home</a> | <a [routerLink]=\"['/add_doc/', { id: 2 }]\">Add Doctor</a> | &nbsp; <input #f type=\"text\" > <button class=\"btn btn-primary\" (click)=\"getUsers(f.value)\">Message</button>",
+            templateUrl: './app.template.html'
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], AppComponent);

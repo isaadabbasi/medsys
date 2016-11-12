@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var DoctorSchema = new Schema({
     uid: String,
     name: String,
+    email: String,
     password: String,
     is_admin: Boolean,
     specialization: [],

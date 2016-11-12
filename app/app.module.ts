@@ -6,9 +6,11 @@ import { FormsModule }  from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import { AboutComponent } from "./components/about/about.component";
-import { routing } from "./routes";
-import { HomeComponent } from "./components/home/home.component";
 import { CreateDoctor } from "./components/create_doctor/create_doctor.component";
+import { HomeComponent } from "./components/home/home.component";
+import { LoginComponent } from "./components/login/login.component";
+import { NavbarComponent } from './components/navbar/navbar.component'
+import { routing } from "./routes";
 
 @NgModule({
     imports: [
@@ -21,8 +23,10 @@ import { CreateDoctor } from "./components/create_doctor/create_doctor.component
     declarations: [
         AppComponent,
         AboutComponent,
+        CreateDoctor,
+        LoginComponent,
         HomeComponent,  
-        CreateDoctor
+        NavbarComponent
     ],
     bootstrap: [ AppComponent ]
 })
