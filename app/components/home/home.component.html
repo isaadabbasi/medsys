@@ -1,7 +1,16 @@
-<h2>Page: {{name}}</h2>
+<div class="container">
+    <div class="col-xs-2">
+       <ul class="list-group">
+           <a href="" ><li class="list-group-item custom-list-item ">Doctor</li></a>
+           <a href=""><li class="list-group-item custom-list-item ">Patients</li></a>
+           <a href=""><li class="list-group-item custom-list-item ">Stats</li></a>
+           <a href=""><li class="list-group-item custom-list-item ">Doctor</li></a>
+       </ul>
+    </div>
+</div>
 
-<pre>Response from server: /users</pre>
-<pre>{{ users?.name }}</pre>
-<pre>{{ users?.last }}</pre>
-
-<button (click)="sendPostRequest()" class="btn btn-priamry">send user details</button>
+    <div class="col-xs-10">
+        <router-outlet>
+            <primary-outlet></primary-outlet>
+        </router-outlet>
+    </div>

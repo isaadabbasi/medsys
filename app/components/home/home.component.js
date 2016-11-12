@@ -25,6 +25,12 @@ var HomeComponent = (function () {
             .map(function (data) { return data.json(); })
             .subscribe(function (data) { return console.log(data); });
     };
+    HomeComponent.prototype.canActivate = function (router, state) {
+        console.log('home activatedd');
+        if (!localStorage.getItem('login_auth'))
+            return false;
+        return true;
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'my-home',

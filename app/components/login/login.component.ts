@@ -28,9 +28,11 @@ export class LoginComponent implements OnInit {
                         console.log('res.status: ', res.status);
                         this.response = res;
                         setTimeout(() => this.response = undefined, 2000);
-                        if(this.response.status == 200)
+                        if(this.response.status == 200){
                             localStorage.setItem('admin_auth', 'blah');
-                            this.router.navigate(['/'])
+                            this.router.navigate(['home', 'add'])
+                        }
+                            
                     });
          }
 }

@@ -32,9 +32,10 @@ var LoginComponent = (function () {
                 console.log('res.status: ', res.status);
                 _this.response = res;
                 setTimeout(function () { return _this.response = undefined; }, 2000);
-                if (_this.response.status == 200)
+                if (_this.response.status == 200) {
                     localStorage.setItem('admin_auth', 'blah');
-                _this.router.navigate(['/']);
+                    _this.router.navigate(['home', 'add']);
+                }
             });
     };
     LoginComponent = __decorate([

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Http } from "@angular/http";
+import { CanActivate,ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -7,7 +8,7 @@ import 'rxjs/add/operator/map';
     templateUrl: 'components/home/home.component.html',
     styleUrls: ['components/home/home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements CanActivate {
     name: string = "Home page";
     users: {};
 
@@ -21,5 +22,11 @@ export class HomeComponent {
         this._http.post('/adddoctor', {email: 'itsssaad', password: 123})
             .map(data => data.json())
                 .subscribe(data => console.log(data));
+    }
+    canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot){
+        console.log('home activatedd')
+        if(!localStorage.getItem('login_auth'))
+            return false
+        return true;    
     }
 }
