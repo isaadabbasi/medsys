@@ -1,8 +1,8 @@
 "use strict";
-var LoginResponse = (function () {
-    function LoginResponse(status, message) {
+var Response = (function () {
+    function Response(status, message) {
     }
-    return LoginResponse;
+    return Response;
 }());
-exports.LoginResponse = LoginResponse;
+exports.Response = Response;
 //# sourceMappingURL=responses.js.map

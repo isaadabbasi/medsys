@@ -9,9 +9,11 @@ exports.routes = [
     { path: '', component: login_component_1.LoginComponent, terminal: true },
     { path: 'about', component: about_component_1.AboutComponent },
     { path: 'add_doc', component: create_doctor_component_1.CreateDoctor },
-    { path: 'home', component: home_component_1.HomeComponent, children: [{
-                path: 'showdoc', component: showdoc_component_1.ShowDoctorComponent
-            }] }
+    { path: 'home', component: home_component_1.HomeComponent, children: [
+            { path: 'showdoc', component: showdoc_component_1.ShowDoctorComponent },
+            { path: 'adddoc', component: create_doctor_component_1.CreateDoctor }
+        ]
+    }
 ];
 exports.routing = router_1.RouterModule.forRoot(exports.routes, { useHash: true });
 //# sourceMappingURL=routes.js.map

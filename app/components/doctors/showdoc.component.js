@@ -22,9 +22,13 @@ var ShowDoctorComponent = (function () {
             _this.doctors = res;
         });
     };
+    ShowDoctorComponent.prototype.deleteDoctor = function (doc_id) {
+        this.http.delete('delete_doc/' + doc_id)
+            .subscribe(function (res) { return console.log(res); });
+    };
     ShowDoctorComponent = __decorate([
         core_1.Component({
-            template: "\n        <h3 class=\"text-center\"><kbd>Doctor's Data</kbd></h3> <hr>\n        <table class=\"table table-responsive table-hover\">\n            <thead>\n                <th>Name</th>\n                <th>Email</th>\n                <th>Specializations</th>\n                <th>Delete</th>\n            </thead>\n            <tbody *ngFor=\"let doctor of doctors\">\n                <td>{{doctor.name}}</td>\n                <td>{{doctor.email}}</td>\n                <td>{{doctor?.specialization}}</td>\n                <td><button class=\"btn-xs btn-danger\" >Delete</button></td>\n            </tbody>\n        </table>\n    "
+            template: "\n        <h3 class=\"text-center\"><kbd>Doctor's Data</kbd></h3> <hr>\n        <table class=\"table table-responsive table-hover\">\n            <thead>\n                <th>Name</th>\n                <th>Email</th>\n                <th>Specializations</th>\n                <th>Delete</th>\n            </thead>\n            <tbody *ngFor=\"let doctor of doctors\">\n                <td>{{doctor.name}}</td>\n                <td>{{doctor.email}}</td>\n                <td>{{doctor?.specialization}}</td>\n                <td><button (click)=\"deleteDoctor(doctor._id)\" class=\"btn-xs btn-danger\" >Delete</button></td>\n            </tbody>\n        </table>\n    "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], ShowDoctorComponent);

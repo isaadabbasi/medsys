@@ -1,18 +1,32 @@
 import { Component } from '@angular/core';
-import { CreateDoctorService } from './create_doctor.service';
+import { DoctorFormModel } from '../models/roles';
+import {Http} from '@angular/http';
+import { Router } from '@angular/router';
+import { Response } from '../models/responses';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'create-doctor',
-    templateUrl: 'components/create_doctor/create_doctor.template.html', 
-    providers: [CreateDoctorService]
-})
+    templateUrl: 'components/create_doctor/create_doctor.template.html'
+    })
 export class CreateDoctor {
-    doctor: Object = {};
 
-    constructor(private _createDoctorService: CreateDoctorService) {}
+    response;
+    doctorFormModel:DoctorFormModel = {
+        name: '',
+        email:'',
+        password:'',
+        specialization:''
+    };
+    constructor(public http: Http, public router: Router) {}
 
     addDoctor(){
-        this._createDoctorService.addDoctor(this.doctor)
-            .subscribe(res => console.log(res));
+        this.http.post('add_doctor', this.doctorFormModel)
+            .subscribe( res => { 
+                if(res.status == 200)
+                    this.router.navigate(['home','showdoc'])
+                else 
+                    this.response = res;
+            });
     }
 }

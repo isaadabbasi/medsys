@@ -6,10 +6,10 @@ var PatientSchema = new Schema({
     doc_id: String,
     name: String,
     disease: String, 
-    status: Boolean,
+    admit: Boolean,
     is_admin: Boolean,
     condition: String,
-    admit_date: Date,
+    admit_date: Number,
     discharge_date: Date
 });
 

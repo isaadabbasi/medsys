@@ -9,23 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var create_doctor_service_1 = require('./create_doctor.service');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
+require('rxjs/add/operator/map');
 var CreateDoctor = (function () {
-    function CreateDoctor(_createDoctorService) {
-        this._createDoctorService = _createDoctorService;
-        this.doctor = {};
+    function CreateDoctor(http, router) {
+        this.http = http;
+        this.router = router;
+        this.doctorFormModel = {
+            name: '',
+            email: '',
+            password: '',
+            specialization: ''
+        };
     }
     CreateDoctor.prototype.addDoctor = function () {
-        this._createDoctorService.addDoctor(this.doctor)
-            .subscribe(function (res) { return console.log(res); });
+        var _this = this;
+        this.http.post('add_doctor', this.doctorFormModel)
+            .subscribe(function (res) {
+            if (res.status == 200)
+                _this.router.navigate(['home', 'showdoc']);
+            else
+                _this.response = res;
+        });
     };
     CreateDoctor = __decorate([
         core_1.Component({
             selector: 'create-doctor',
-            templateUrl: 'components/create_doctor/create_doctor.template.html',
-            providers: [create_doctor_service_1.CreateDoctorService]
+            templateUrl: 'components/create_doctor/create_doctor.template.html'
         }), 
-        __metadata('design:paramtypes', [create_doctor_service_1.CreateDoctorService])
+        __metadata('design:paramtypes', [http_1.Http, router_1.Router])
     ], CreateDoctor);
     return CreateDoctor;
 }());

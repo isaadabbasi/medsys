@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
-import {LoginResponse} from './../models/responses';
+import {Response} from './../models/responses';
 import { Admin } from './../models/roles'
 @Component({
     selector: 'login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
     };
-    response: LoginResponse ;
+    response: Response;
 
     constructor(private _http: Http, private router: Router) {}
 
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
                             localStorage.setItem('admin_auth', 'blah');
                             this.router.navigate(['home', 'showdoc'])
                         }
-                            
                     });
          }
 }

@@ -10,9 +10,11 @@ export const routes: Routes = [
     { path: '', component: LoginComponent, terminal: true },
     { path: 'about', component: AboutComponent },
     { path: 'add_doc', component: CreateDoctor },
-    { path: 'home', component: HomeComponent, children:[{
-        path: 'showdoc', component: ShowDoctorComponent
-    }] }
+    { path: 'home', component: HomeComponent, children: [
+        {path: 'showdoc', component: ShowDoctorComponent },
+        {path: 'adddoc', component: CreateDoctor}
+    ] 
+    }
     
 ];
 

@@ -14,7 +14,7 @@ import { Http } from '@angular/http';
                 <td>{{doctor.name}}</td>
                 <td>{{doctor.email}}</td>
                 <td>{{doctor?.specialization}}</td>
-                <td><button class="btn-xs btn-danger" >Delete</button></td>
+                <td><button (click)="deleteDoctor(doctor._id)" class="btn-xs btn-danger" >Delete</button></td>
             </tbody>
         </table>
     `
@@ -30,5 +30,9 @@ export class ShowDoctorComponent implements OnInit{
                 .subscribe(res => {
                     this.doctors = res;
                 });
+    }
+    deleteDoctor(doc_id: Number){
+        this.http.delete('delete_doc/'+doc_id)
+            .subscribe(res => console.log(res));
     }
 }

@@ -19,12 +19,26 @@ module.exports = function(express, mongoose, socketio){
             console.log(x);
         }
   })
-  router.post('/adddoctor', (req,res, next) => {
-    console.log(req.body);
-    if(req.body && (typeof req.body == 'Object' || typeof req.body == Object)){
-      console.log(req.body);
-    } else {
-      console.log('ROUTE HIT - EMPTY');
+  router.post('/add_doctor', (req,res, next) => {
+    console.log(typeof req.body, req.body.length || req.body.size);
+    if(req.body && (typeof req.body == 'object')){
+      var newDoctor = new doctor({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        is_admin: false,
+        specialization: req.body.specialization,
+        join_date: new Date()
+      })
+
+      try{
+        newDoctor.save( (err)=> {
+          if(err) throw err;
+          
+          if(!err)
+            res.send({status:200, message: 'Doctor Successfully Created'});
+        })
+      } catch(exc) { res.send({ status: 500, message: 'Unable to Create Doctor' }) }
     }
   })
 
@@ -37,32 +51,9 @@ module.exports = function(express, mongoose, socketio){
       else
         res.json({message: 'No Doctors Found'})
     })
-    
 
-    router.post('add_new_patient', (request, response, next)=>{
-      console.log("[ROUTER_HIT /add_new_patient]");
-      console.log(typeof req.body);
-      
-      var newPatient = new patient({
-          uid: req.body.uid,
-          name: req.body,
-          disease: req.body.disease, 
-          status: req.body.status,
-          is_admin: req.body.is_admin,
-          condition: req.body.condition,
-          admit_date: req.body.admit_date,
-          discharge_date: req.body.discharge_date
-      })
-      try{ 
-        newPatient.save((err)=>{
-          if(err) throw err;
-          if(!err)
-            res.send({status: 200, message: 'New Patient Successfully Added'});
-        })
-      } catch(ex){
-        console.log("CAUGHT EXCEPTION: ", ex);
-      }
-      
+    router.delete('/delete_doc/:id', function(req, res){
+      console.log(req.params.id);
     })
 })
 
