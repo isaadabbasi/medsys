@@ -13,4 +13,5 @@ var DoctorSchema = new Schema({
 });
 
 var DoctorModel;
+
 module.exports = DoctorModel = mongoose.model('doc_sch', DoctorSchema);

@@ -15,13 +15,16 @@ var ShowDoctorComponent = (function () {
         this.http = http;
     }
     ShowDoctorComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.http.get('getdocs')
             .map(function (res) { return res.json(); })
-            .subscribe(function (res) { return console.log(res); });
+            .subscribe(function (res) {
+            _this.doctors = res;
+        });
     };
     ShowDoctorComponent = __decorate([
         core_1.Component({
-            template: "\n        <h3 class=\"text-center\"><kbd>Doctor's Data</kbd></h3> <hr>\n        <table class=\"table table-responsive table-hover\">\n            <thead>\n                <th>Name</th>\n                <th>Email</th>\n                <th>Join Date</th>\n                <th>Delete</th>\n            </thead>\n            <tbody>\n                <td></td>\n                <td></td>\n                <td></td>\n                <td></td>\n            </tbody>\n        </table>\n    "
+            template: "\n        <h3 class=\"text-center\"><kbd>Doctor's Data</kbd></h3> <hr>\n        <table class=\"table table-responsive table-hover\">\n            <thead>\n                <th>Name</th>\n                <th>Email</th>\n                <th>Specializations</th>\n                <th>Delete</th>\n            </thead>\n            <tbody *ngFor=\"let doctor of doctors\">\n                <td>{{doctor.name}}</td>\n                <td>{{doctor.email}}</td>\n                <td>{{doctor?.specialization}}</td>\n                <td><button class=\"btn-xs btn-danger\" >Delete</button></td>\n            </tbody>\n        </table>\n    "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], ShowDoctorComponent);

@@ -34,7 +34,7 @@ var LoginComponent = (function () {
                 setTimeout(function () { return _this.response = undefined; }, 2000);
                 if (_this.response.status == 200) {
                     localStorage.setItem('admin_auth', 'blah');
-                    _this.router.navigate(['home', 'add']);
+                    _this.router.navigate(['home', 'showdoc']);
                 }
             });
     };

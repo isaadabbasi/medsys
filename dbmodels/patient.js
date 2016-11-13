@@ -3,13 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PatientSchema = new Schema({
-    uid: String,
+    doc_id: String,
     name: String,
     disease: String, 
-    Status: Boolean,
+    status: Boolean,
     is_admin: Boolean,
     condition: String,
-    admit: Boolean,
     admit_date: Date,
     discharge_date: Date
 });

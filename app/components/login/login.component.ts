@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
                         setTimeout(() => this.response = undefined, 2000);
                         if(this.response.status == 200){
                             localStorage.setItem('admin_auth', 'blah');
-                            this.router.navigate(['home', 'add'])
+                            this.router.navigate(['home', 'showdoc'])
                         }
                             
                     });

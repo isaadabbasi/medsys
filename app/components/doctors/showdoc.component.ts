@@ -7,14 +7,14 @@ import { Http } from '@angular/http';
             <thead>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Join Date</th>
+                <th>Specializations</th>
                 <th>Delete</th>
             </thead>
-            <tbody>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tbody *ngFor="let doctor of doctors">
+                <td>{{doctor.name}}</td>
+                <td>{{doctor.email}}</td>
+                <td>{{doctor?.specialization}}</td>
+                <td><button class="btn-xs btn-danger" >Delete</button></td>
             </tbody>
         </table>
     `
@@ -23,9 +23,12 @@ import { Http } from '@angular/http';
 export class ShowDoctorComponent implements OnInit{
     constructor(public http: Http){}
 
+    doctors: Object;
     ngOnInit(){
         this.http.get('getdocs')
             .map(res=> res.json())
-                .subscribe(res => console.log(res));
+                .subscribe(res => {
+                    this.doctors = res;
+                });
     }
 }
