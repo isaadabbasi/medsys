@@ -53,9 +53,32 @@ module.exports = function(express, mongoose, socketio){
     })
 
     router.delete('/delete_doc/:id', function(req, res){
-      console.log(req.params.id);
+      doctor.remove({_id: req.params.id}, function(err){
+        if(err)
+          console.log(err);
+        if(!err)
+         res.send({status: 200, message: 'Doctor Successfully Removed'});
+      })
     })
 })
 
+  router.get('/get_patients', (req, res)=>{
+    console.log('get patient root hit');
+    patient.find({}, (err, patients)=>{
+      if(err) console.log(err);
+
+      if(!err && patients)
+        res.send({status: 200, patients: patients});
+    })
+  })
+
+  router.delete('/delpatient/:id', (req, res)=>{
+    if(req.params.id)
+      patient.remove({_id: req.params.id}, (err)=>{
+        if(err) console.log(err);
+        if(!err)
+          res.send({status: 200, message: 'Patient Deleted'});
+      })
+  })
   return router;
 }

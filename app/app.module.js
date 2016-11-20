@@ -17,8 +17,10 @@ var about_component_1 = require("./components/about/about.component");
 var create_doctor_component_1 = require("./components/create_doctor/create_doctor.component");
 var home_component_1 = require("./components/home/home.component");
 var login_component_1 = require("./components/login/login.component");
+var login_service_1 = require("./components/login/login.service");
 var navbar_component_1 = require('./components/navbar/navbar.component');
 var showdoc_component_1 = require('./components/doctors/showdoc.component');
+var patients_component_1 = require('./components/patients/patients.component');
 var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
@@ -39,9 +41,11 @@ var AppModule = (function () {
                 login_component_1.LoginComponent,
                 home_component_1.HomeComponent,
                 showdoc_component_1.ShowDoctorComponent,
-                navbar_component_1.NavbarComponent
+                navbar_component_1.NavbarComponent,
+                patients_component_1.PatientsComponent
             ],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [app_component_1.AppComponent],
+            providers: [login_service_1.LoginService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

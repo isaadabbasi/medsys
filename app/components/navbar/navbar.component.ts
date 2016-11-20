@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
+
 @Component({
     moduleId: module.id,
     selector: 'custom-navbar',
@@ -17,12 +19,12 @@ import { Router } from '@angular/router';
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a [routerLink]="['/']" *ngIf="checkAdminAuth()">Home <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a [routerLink]="['/home/showdoc']" *ngIf="checkAdminAuth()">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right pull-right">
                 <li data-toggle="modal" data-target="#myModal">
-                    <a *ngIf="checkAdminAuth()" (click)="logout()">Logout</a>
-                    <a *ngIf="!checkAdminAuth()" [routerLink]="['/']">Login</a>
+                    <a *ngIf="checkAdminAuth()" style="cursor: pointer" (click)="logout()">Logout</a>
+                    <a *ngIf="!checkAdminAuth()" style="cursor: pointer" [routerLink]="['/']">Login</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +32,7 @@ import { Router } from '@angular/router';
 </nav>`
 })
 export class NavbarComponent implements OnInit {
-    constructor(private router: Router) { }
+    constructor(private router: Router, public loginService: LoginService) { }
 
 
     ngOnInit() { 
@@ -41,8 +43,7 @@ export class NavbarComponent implements OnInit {
     }
 
     logout(){
-        localStorage.removeItem('admin_auth');
-        this.router.navigate(['/'])
+        this.loginService.logout();
     }
     
 }

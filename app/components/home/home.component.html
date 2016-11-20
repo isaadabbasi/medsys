@@ -2,11 +2,11 @@
     <div class="col-xs-2">
        <ul class="list-group">
            <a [routerLink]="['/home/showdoc']" ><li class="list-group-item custom-list-item ">Doctors</li></a>
-           <a ><li class="list-group-item custom-list-item ">Patients</li></a>
-           <a href=""><li class="list-group-item custom-list-item ">Stats</li></a>
+           <a [routerLink]="['/home/patients']"><li class="list-group-item custom-list-item ">Patients</li></a>
+           <a ><li class="list-group-item custom-list-item ">Stats</li></a>
            <a [routerLink]="['/home/adddoc']"><li class="list-group-item custom-list-item ">Add Doctor</li></a>
        </ul>
-    </div>
+    </div> 
       <div class="col-xs-10">
         <router-outlet>
             <primary-outlet></primary-outlet>

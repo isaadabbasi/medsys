@@ -8,6 +8,7 @@ export class DoctorFormModel {
     email: String;
     password: String;
     specialization: String;
-    constructor( name?: String, email?: String, password?: String, specialization?: String){}
+    constructor( name?: String, email?: String, password?: String, specialization?: String){
+    }
 
 }

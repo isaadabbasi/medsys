@@ -3,19 +3,20 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
 import {Response} from './../models/responses';
-import { Admin } from './../models/roles'
+import { Admin } from './../models/roles';
+import { LoginService } from './login.service';
 @Component({
     selector: 'login',
     templateUrl: './components/login/login.template.html'
 })
 export class LoginComponent implements OnInit {
     admin: Admin = {
-    username: '',
-    password: ''
+        username: '',
+        password: ''
     };
     response: Response;
 
-    constructor(private _http: Http, private router: Router) {}
+    constructor(private _http: Http, private router: Router, public loginService: LoginService) {}
 
     ngOnInit() { }
 
@@ -29,8 +30,7 @@ export class LoginComponent implements OnInit {
                         this.response = res;
                         setTimeout(() => this.response = undefined, 2000);
                         if(this.response.status == 200){
-                            localStorage.setItem('admin_auth', 'blah');
-                            this.router.navigate(['home', 'showdoc'])
+                            this.loginService.authenticateUser();
                         }
                     });
          }

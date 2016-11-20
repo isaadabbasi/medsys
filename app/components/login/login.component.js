@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 var router_1 = require("@angular/router");
+var login_service_1 = require('./login.service');
 var LoginComponent = (function () {
-    function LoginComponent(_http, router) {
+    function LoginComponent(_http, router, loginService) {
         this._http = _http;
         this.router = router;
+        this.loginService = loginService;
         this.admin = {
             username: '',
             password: ''
@@ -33,8 +35,7 @@ var LoginComponent = (function () {
                 _this.response = res;
                 setTimeout(function () { return _this.response = undefined; }, 2000);
                 if (_this.response.status == 200) {
-                    localStorage.setItem('admin_auth', 'blah');
-                    _this.router.navigate(['home', 'showdoc']);
+                    _this.loginService.authenticateUser();
                 }
             });
     };
@@ -43,7 +44,7 @@ var LoginComponent = (function () {
             selector: 'login',
             templateUrl: './components/login/login.template.html'
         }), 
-        __metadata('design:paramtypes', [http_1.Http, router_1.Router])
+        __metadata('design:paramtypes', [http_1.Http, router_1.Router, login_service_1.LoginService])
     ], LoginComponent);
     return LoginComponent;
 }());

@@ -1,5 +1,9 @@
 <div class="row" >
-    <div class="col-xs-offset-3 col-md-6" style="border:1px solid #ccc; background-color:white; [border-radius: 10px; padding: 20px;">
+    <div class="col-xs-offset-3 col-md-6" style="border:1px solid #ccc; 
+    background-color:white;
+     [border-radius: 10px; padding: 20px;
+     
+     padding:10px;">
         <h3 class="text-center" style="    
                 color: #fff;
                 background-color: #03A9F4;
@@ -10,22 +14,27 @@
                 border-bottom-left-radius: 30px;">
             Login
         </h3>
+        <form #form name="userform">
 
-        <div class="form-group">
-            <label for="email">Username:</label>
-            <div class="input-group">
-            <div class="input-group-addon"><b>U</b></div>
-            <input type="text" class="form-control" placeholder="johndoe@exp.com" [(ngModel)]="admin.username">
+            <div class="form-group">
+                <label for="email">Username:</label>
+                <div class="input-group">
+                <div class="input-group-addon"><b>U</b></div>
+                <input type="text" class="form-control" placeholder="johndoe@exp.com" name="username" [(ngModel)]="admin.username">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="email">Password:</label>
-            <div class="input-group">
-            <div class="input-group-addon"><b>P</b></div>
-            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="admin.password">
+            <div class="form-group">
+                <label for="email">Password:</label>
+                <div class="input-group">
+                <div class="input-group-addon"><b>P</b></div>
+                <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="admin.password">
+                </div>
             </div>
-        </div>
-        <span class="text-danger text-center alert" *ngIf="response && response.status == 404"><strong>No Account Match Found</strong></span>
-        <button class="btn btn-warning pull-right" (click)="adminLogin()">Login</button>
+            <span class="text-danger text-center alert" *ngIf="response && response.status == 404"><strong>No Account Match Found</strong></span>
+            <div class="col-xs-12 col-md-offset-2 col-md-8">
+                <button class="btn btn-warning pull-right btn-block" style="margin-bottom: 15px" (click)="adminLogin(form)">Login</button>
+            </div>
+        </form>
+        
     </div>
 </div>

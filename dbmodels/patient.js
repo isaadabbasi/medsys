@@ -10,7 +10,7 @@ var PatientSchema = new Schema({
     is_admin: Boolean,
     condition: String,
     admit_date: Number,
-    discharge_date: Date
+    discharge_date: String
 });
 
 

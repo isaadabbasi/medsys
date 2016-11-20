@@ -9,8 +9,10 @@ import { AboutComponent } from "./components/about/about.component";
 import { CreateDoctor } from "./components/create_doctor/create_doctor.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
+import { LoginService } from "./components/login/login.service";
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { ShowDoctorComponent } from './components/doctors/showdoc.component'
+import { PatientsComponent } from './components/patients/patients.component'
 import { routing } from "./routes";
 
 @NgModule({
@@ -28,8 +30,10 @@ import { routing } from "./routes";
         LoginComponent,
         HomeComponent,  
         ShowDoctorComponent,
-        NavbarComponent
+        NavbarComponent,
+        PatientsComponent
     ],
-    bootstrap: [ AppComponent ]
+    bootstrap: [ AppComponent ],
+    providers:[LoginService]
 })
 export class AppModule { }
