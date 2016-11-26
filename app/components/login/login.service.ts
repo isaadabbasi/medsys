@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http } from '@angular/http';
+
 @Injectable()
 export class LoginService {
     isAuthenticated : boolean = localStorage.getItem('admin_auth');
-    constructor(public router:Router) { 
+    constructor(public router:Router, private http: Http) { 
     }
 
     checkIsAuthenticated():boolean{
@@ -19,6 +21,11 @@ export class LoginService {
             this.router.navigate(['']);
         
         return isAuthenticated;
+    }
+
+    login(credentails: {username: string, password: string}){
+        return this.http.post('admin_login', credentails);
+
     }
 
     logout(){

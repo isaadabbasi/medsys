@@ -30,7 +30,12 @@ export class ShowDoctorComponent implements OnInit{
 
     doctors;
     ngOnInit(){
-        this.getAllDoctors();
+         this.getAllDoctors();
+        // let _self = this;
+        //  setInterval(function(){
+        //     _self.http.post('/users/mqtt_data', {beat: Math.round(Math.random() * 100) })
+        //     .subscribe(res => console.log(res));
+        // }, 100);
     }
     deleteDoctor(doc_id: Number){
         if(confirm('Are you want to delete the id "'+doc_id+'"? '))
@@ -39,6 +44,8 @@ export class ShowDoctorComponent implements OnInit{
                 if(res.status == 200)
                     this.getAllDoctors();
         } );
+       
+    //  this.mqttData(Math.round(Math.random() * 100));   
     }
     getAllDoctors(){
        this.http.get('getdocs')
@@ -47,6 +54,8 @@ export class ShowDoctorComponent implements OnInit{
                     this.doctors = res;
                 });
     }
-
-    
+    mqttData(val){
+         var _self = this;
+         
+    }
 }

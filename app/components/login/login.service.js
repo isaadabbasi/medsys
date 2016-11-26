@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var LoginService = (function () {
-    function LoginService(router) {
+    function LoginService(router, http) {
         this.router = router;
+        this.http = http;
         this.isAuthenticated = localStorage.getItem('admin_auth');
     }
     LoginService.prototype.checkIsAuthenticated = function () {
@@ -26,6 +28,9 @@ var LoginService = (function () {
             this.router.navigate(['']);
         return isAuthenticated;
     };
+    LoginService.prototype.login = function (credentails) {
+        return this.http.post('admin_login', credentails);
+    };
     LoginService.prototype.logout = function () {
         this.isAuthenticated = false;
         localStorage.removeItem('admin_auth');
@@ -38,7 +43,7 @@ var LoginService = (function () {
     };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
     ], LoginService);
     return LoginService;
 }());

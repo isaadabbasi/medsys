@@ -14,8 +14,8 @@ var io = require('socket.io-client');
 var http_1 = require("@angular/http");
 require('rxjs/add/operator/map');
 var AppComponent = (function () {
-    function AppComponent(_http) {
-        this._http = _http;
+    function AppComponent(http) {
+        this.http = http;
         this.name = "Angular 2 on Express";
         this.message = null;
         this.socket = null;
@@ -36,7 +36,7 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES],
             selector: 'my-app',
             styles: ["h1 {\n\tcolor: white;\n\tbackground: darkgray;\n\tpadding: 20px;\n}\n"],
-            templateUrl: './app.template.html'
+            template: "\n        <custom-navbar ></custom-navbar>\n\n        <router-outlet></router-outlet>\n    "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], AppComponent);

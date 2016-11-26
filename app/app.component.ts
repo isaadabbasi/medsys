@@ -13,25 +13,30 @@ import 'rxjs/add/operator/map';
 	padding: 20px;
 }
 `],
-    templateUrl: './app.template.html' 
+    template: `
+        <custom-navbar ></custom-navbar>
+
+        <router-outlet></router-outlet>
+    ` 
 })
 export class AppComponent implements OnInit{
     name: string = "Angular 2 on Express";
     message: string = null;
     socket = null;
-    constructor(private _http: Http) {
+    constructor(public http: Http) {
     }
 
     ngOnInit(){
         this.socket = io('http://localhost:3000');
-
         this.socket.on('message', msg => {
             this.message = msg;
             console.log('RCV : ', msg)
         });
+        
     }
 
     getUsers(message){
         this.socket.emit('message', message);    
     }
+    
 }

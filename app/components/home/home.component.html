@@ -1,10 +1,21 @@
-<div class="container">
+<custom-navbar ></custom-navbar>
+<div class="container" style="margin-top:50px">
     <div class="col-xs-2">
-       <ul class="list-group">
-           <a [routerLink]="['/home/showdoc']" ><li class="list-group-item custom-list-item ">Doctors</li></a>
-           <a [routerLink]="['/home/patients']"><li class="list-group-item custom-list-item ">Patients</li></a>
+       <ul class="list-group" style="margin-top:20px;">
+           <a [routerLink]="['/home/showdoc']" ><li class="list-group-item custom-list-item ">
+               <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/27715-200.png" class="side-bar-img">Doctors</li></a>
+           <a [routerLink]="['/home/patients']">
+                <li class="list-group-item custom-list-item ">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/27705-200.png" class="side-bar-img">
+                    
+                    Patients
+                    </li>
+            </a>
            <a ><li class="list-group-item custom-list-item ">Stats</li></a>
-           <a [routerLink]="['/home/adddoc']"><li class="list-group-item custom-list-item ">Add Doctor</li></a>
+           <a [routerLink]="['/home/adddoc']"><li class="list-group-item custom-list-item " style="padding: 15px 0;">
+                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-add-128.png" class="side-bar-img">
+                   Add Doctor
+               </li></a>
        </ul>
     </div> 
       <div class="col-xs-10">

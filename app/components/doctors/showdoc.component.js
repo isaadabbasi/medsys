@@ -16,6 +16,11 @@ var ShowDoctorComponent = (function () {
     }
     ShowDoctorComponent.prototype.ngOnInit = function () {
         this.getAllDoctors();
+        // let _self = this;
+        //  setInterval(function(){
+        //     _self.http.post('/users/mqtt_data', {beat: Math.round(Math.random() * 100) })
+        //     .subscribe(res => console.log(res));
+        // }, 100);
     };
     ShowDoctorComponent.prototype.deleteDoctor = function (doc_id) {
         var _this = this;
@@ -25,6 +30,7 @@ var ShowDoctorComponent = (function () {
                 if (res.status == 200)
                     _this.getAllDoctors();
             });
+        //  this.mqttData(Math.round(Math.random() * 100));   
     };
     ShowDoctorComponent.prototype.getAllDoctors = function () {
         var _this = this;
@@ -33,6 +39,9 @@ var ShowDoctorComponent = (function () {
             .subscribe(function (res) {
             _this.doctors = res;
         });
+    };
+    ShowDoctorComponent.prototype.mqttData = function (val) {
+        var _self = this;
     };
     ShowDoctorComponent = __decorate([
         core_1.Component({

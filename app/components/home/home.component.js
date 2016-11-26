@@ -20,11 +20,6 @@ var HomeComponent = (function () {
             .map(function (data) { return data.json(); })
             .subscribe(function (data) { return _this.users = data; });
     }
-    HomeComponent.prototype.sendPostRequest = function () {
-        this._http.post('/adddoctor', { email: 'itsssaad', password: 123 })
-            .map(function (data) { return data.json(); })
-            .subscribe(function (data) { return console.log(data); });
-    };
     HomeComponent.prototype.canActivate = function (router, state) {
         console.log('home activatedd');
         if (!localStorage.getItem('login_auth'))

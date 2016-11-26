@@ -14,11 +14,15 @@ module.exports = function(express, mongoose, socketio){
   });
 
   router.post('/users/adddoctor', (req,res, next) => {
-    if(req.body && typeof req.body == 'Object'){
+    if(req.body && typeof req.body == 'object'){
       console.log(req.body);
     } else {
       console.log('ROUTE HIT - EMPTY');
     }
+  })
+
+  router.post('/mqtt_data', function(req, res, next){
+    console.log(req.body);
   })
 
   return router;

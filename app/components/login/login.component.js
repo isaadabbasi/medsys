@@ -42,7 +42,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login',
-            templateUrl: './components/login/login.template.html'
+            templateUrl: './components/login/login.template.html',
+            styles: ["\n        .doc_wall{\n            background-color: rgba(224, 224, 224, 0.78);\n            background-image: url(./images/doc_wall.jpg);\n            background-repeat: no-repeat;\n            background-size: cover;\n            height: 780px;\n            margin-top: 50px;\n        }\n    "]
         }), 
         __metadata('design:paramtypes', [http_1.Http, router_1.Router, login_service_1.LoginService])
     ], LoginComponent);

@@ -15,6 +15,10 @@ var NavbarComponent = (function () {
     function NavbarComponent(router, loginService) {
         this.router = router;
         this.loginService = loginService;
+        this.admin = {
+            username: '',
+            password: ''
+        };
     }
     NavbarComponent.prototype.ngOnInit = function () {
         console.log();
@@ -25,11 +29,26 @@ var NavbarComponent = (function () {
     NavbarComponent.prototype.logout = function () {
         this.loginService.logout();
     };
+    NavbarComponent.prototype.login = function () {
+        var _this = this;
+        if (this.admin.username && this.admin.password)
+            this.loginService.login(this.admin)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (res) {
+                console.log('res: ', res);
+                console.log('res.status: ', res.status);
+                _this.response = res;
+                setTimeout(function () { return _this.response = undefined; }, 2000);
+                if (_this.response.status == 200) {
+                    _this.loginService.authenticateUser();
+                }
+            });
+    };
     NavbarComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'custom-navbar',
-            template: "<nav id=\"navbar\" class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        </button>\n            <a class=\"navbar-brand\">Q E C</a>\n        </div>\n\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a [routerLink]=\"['/home/showdoc']\" *ngIf=\"checkAdminAuth()\">Home</a></li>\n            </ul>\n            <ul class=\"nav navbar-nav navbar-right pull-right\">\n                <li data-toggle=\"modal\" data-target=\"#myModal\">\n                    <a *ngIf=\"checkAdminAuth()\" style=\"cursor: pointer\" (click)=\"logout()\">Logout</a>\n                    <a *ngIf=\"!checkAdminAuth()\" style=\"cursor: pointer\" [routerLink]=\"['/']\">Login</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>"
+            template: "\n    <div class=\"navbar navbar-default navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar-main\">\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" [routerLink]=\"['/home/showdoc']\">E-Medic</a>\n        </div>\n        <center>\n            <div class=\"navbar-collapse collapse\" id=\"navbar-main\">\n                <!--<ul class=\"nav navbar-nav\" *ngIf=\"checkAdminAuth()\">\n                    <li class=\"active\"><a href=\"#\">Link</a>\n                    </li>\n                    <li><a href=\"#\">Link</a>\n                    </li>\n                    <li><a href=\"#\">Link</a>\n                    </li>\n                    <li><a href=\"#\">Link</a>\n                    </li>\n                    <li class=\"dropdown\">\n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Dropdown <b class=\"caret\"></b></a>\n                        <ul class=\"dropdown-menu\">\n                            <li><a href=\"#\">Action</a>\n                            </li>\n                            <li><a href=\"#\">Another action</a>\n                            </li>\n                            <li><a href=\"#\">Something else here</a>\n                            </li>\n                            <li class=\"divider\"></li>\n                            <li><a href=\"#\">Separated link</a>\n                            </li>\n                            <li class=\"divider\"></li>\n                            <li><a href=\"#\">One more separated link</a>\n                            </li>\n                        </ul>\n                    </li>\n                </ul>-->\n                <ul class=\"nav navbar-nav pull-right\" *ngIf=\"checkAdminAuth()\">\n                    <li>\n                        <a class=\"btn\" (click)=\"logout()\">Logout</a>\n                    </li>\n                </ul>\n                <form class=\"navbar-form navbar-right\" role=\"search\" *ngIf=\"!checkAdminAuth()\">\n                    <div class=\"form-group\">\n                        <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"admin.username\" placeholder=\"Username\">\n                    </div>\n                    <div class=\"form-group\">\n                        <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"admin.password\" placeholder=\"Password\">\n                    </div>\n                    <button (click)=\"login()\" class=\"btn btn-default\">Sign In</button>\n                </form>\n            </div>\n        </center>\n    </div>\n</div>\n"
         }), 
         __metadata('design:paramtypes', [router_1.Router, login_service_1.LoginService])
     ], NavbarComponent);

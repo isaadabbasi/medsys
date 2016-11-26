@@ -83,6 +83,11 @@ module.exports = function (socketio) {
       }
     })
 
+    socket.on('get_patient_data', function(data){
+      setInterval(function(){
+        socket.emit()
+      })
+    })
     socket.on('discharge_patient', (data)=>{
       if(data.patient_id && data.doc_id)
         patient.findOne({_id: data.patient_id}, function(err, pt){

@@ -12,17 +12,12 @@ export class HomeComponent implements CanActivate {
     name: string = "Home page";
     users: {};
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http) {  
         _http.get("/users")
             .map(data => data.json())
             .subscribe((data) => this.users = data);
     }
 
-    sendPostRequest(){
-        this._http.post('/adddoctor', {email: 'itsssaad', password: 123})
-            .map(data => data.json())
-                .subscribe(data => console.log(data));
-    }
     canActivate(router:ActivatedRouteSnapshot, state: RouterStateSnapshot){
         console.log('home activatedd')
         if(!localStorage.getItem('login_auth'))
