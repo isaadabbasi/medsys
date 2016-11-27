@@ -47,32 +47,42 @@ socket.on('set_patient_device', function(ids){
     }
 })
 
+
+socket.on('device_state', function(status){
+    console.log('DEVICE STATE EMIITED: ', status, typeof status);
+    mosca_message.topic = 'onoff';
+    mosca_message.payload = status;
+    mosca.publish(mosca_message ,function(asd){console.log('SET PATIENT DEVICE CB')});
+});
+
+
 mosca.on('clientConnected', function(client) {
     console.log('client connected', client.id);
     let localConnectedDevices = [];
     connectedDevicesList.push(client.id);
     localConnectedDevices.push(client.id);
     console.log('connected devices list :',connectedDevicesList);
-    // connectedDevices.update({},{$addToSet:{connectedDevices:client.id}}, function(err){
-        connectedDevices.update({}, {connectedDevices: [localConnectedDevices]}, function(){
+    connectedDevices.update({},{$addToSet:{connectedDevices:client.id}}, function(err){
+        // connectedDevices.update({}, {connectedDevices: [localConnectedDevices]}, function(){
         if(err) console.log('ERROR ON UPDATING RECORD');
         if(!err) console.log ('NEW DEVICE ADDED TO DATABBASE');
         getConnectedDevices();      
     });
         var booleanValue = true;
-        setInterval(()=> {
-            mosca_message.payload = "true";
-            mosca_message.topic = `${booleanValue = !booleanValue}`;
-            mosca.publish(mosca_message, cb)
-        }, 3000 );
+        // setInterval(()=> {
+        //     mosca_message.payload = `${booleanValue = !booleanValue}`;
+        //     mosca_message.topic = "onoff";
+        //     mosca.publish(mosca_message, cb)
+        // }, 3000 );
 
-        function cb() { }
+        // function cb() { }
 });
 
 
 // fired when a message is received
 mosca.on('published', function(packet, client) {
-  console.log('Published', packet.payload.toString());
+    if(packet.topic == "sensor_data")
+        socket.emit('sensor_data', packet.payload.toString());
 });
 
 mosca.on('ready', setup);
