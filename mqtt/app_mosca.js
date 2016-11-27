@@ -42,7 +42,7 @@ socket.on('set_patient_device', function(ids){
             qos: 0, // 0, 1, or 2
             retain: false // or true
         };
-mosca.publish(mosca_message,function(asd){console.log(asd)});
+    mosca.publish(mosca_message,function(asd){console.log(asd)});
     }
 })
 
