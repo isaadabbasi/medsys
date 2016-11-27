@@ -42,7 +42,8 @@ socket.on('set_patient_device', function(ids){
             qos: 0, // 0, 1, or 2
             retain: false // or true
         };
-    mosca.publish(mosca_message,function(asd){console.log(asd)});
+
+    mosca.publish(mosca_message ,function(asd){console.log('SET PATIENT DEVICE CB')});
     }
 })
 
@@ -57,12 +58,13 @@ mosca.on('clientConnected', function(client) {
         getConnectedDevices();      
     });
         var booleanValue = true;
-        // setInterval(()=> {
-        //     message1.payload = ""+(booleanValue=!booleanValue);
-        //     mosca.publish(message1, cb)
-        // }, 4000 );
+        setInterval(()=> {
+            mosca_message.payload = "true";
+            mosca_message.topic = `${booleanValue = !booleanValue}`;
+            mosca.publish(mosca_message, cb)
+        }, 3000 );
 
-        function cb() { console.log('done!'); }
+        function cb() { }
 });
 
 
