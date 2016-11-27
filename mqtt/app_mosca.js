@@ -49,10 +49,12 @@ socket.on('set_patient_device', function(ids){
 
 mosca.on('clientConnected', function(client) {
     console.log('client connected', client.id);
+    let localConnectedDevices = [];
     connectedDevicesList.push(client.id);
+    localConnectedDevices.push(client.id);
     console.log('connected devices list :',connectedDevicesList);
-    connectedDevices.update({},{$addToSet:{connectedDevices:client.id}}, function(err){
-
+    // connectedDevices.update({},{$addToSet:{connectedDevices:client.id}}, function(err){
+        connectedDevices.update({}, {connectedDevices: [localConnectedDevices]}, function(){
         if(err) console.log('ERROR ON UPDATING RECORD');
         if(!err) console.log ('NEW DEVICE ADDED TO DATABBASE');
         getConnectedDevices();      
