@@ -9,13 +9,12 @@ var io = require('socket.io');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/medical');
 var users = require('./routes/users');
-
+var ascoltatori = require('ascoltatori');
 var root_route = require('./routes/root_route');
-
+var mosca = require('mosca');
 var app = express();
 
 if (app.get('env') !== 'production') {
-
   // expose node_modules to client app
   app.use(express.static(__dirname + "/node_modules"));
 }
@@ -30,7 +29,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app')));
 
+// ESTABLING MOSCA CONNECTION;; 
+var ascoltatore = {
+  //using ascoltatore
+  type: 'mongo',
+  url: 'mongodb://localhost:27017/mqtt',
+  pubsubCollection: 'ascoltatori',
+  mongo: {}
+};
 
+var mosca_settings = {
+  port: 1883,
+  backend: ascoltatore
+};
+
+var mosca_server = new mosca.Server(mosca_settings);
 
 /**
  * ESTABLISHING DATABASE CONNECTION
@@ -52,10 +65,17 @@ app.set('port', port);
 var server = http.createServer(app);
 
 var socketio = io(server);
+var socketInstance = null;
 app.use('/', root_route(express, mongoose, socketio));
 app.use('/users', users(express, mongoose, socketio));
 
-require('./socket/app_socket.js')(socketio);
+var connectedUsers = 0;
+socketio.on('connection', function (socket) {
+  console.log('SOCKET_IO CONNECTED USERS:', ++connectedUsers);
+  socketInstance = socket;
+  require('./socket/app_socket.js')(socket);
+  require('./mqtt/app_mosca.js')(mosca_server, socket, socketio)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

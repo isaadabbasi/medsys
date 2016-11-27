@@ -2,20 +2,8 @@ var connectedUsers = 0;
 var doctor = require('../dbmodels/doctor.js');
 var patient = require('../dbmodels/patient.js');
 
-module.exports = function (socketio) {
+module.exports = function (socket) {
 
-
-  socketio.on('connection', function (socket) {
-    ++connectedUsers;
-    console.log('SOCKET -> ' + connectedUsers + ' USER CONNECTED');
-    socket.emit('message', "user connected");
-
-    socket.on('message', function (message) {
-      if (message && typeof message == 'string') {
-        console.log('200 ' + message);
-        socketio.emit('message', message)
-      }
-    })
 
     socket.on('login', function (credentials) {
       console.log('email recieved -> ', credentials);
@@ -111,6 +99,4 @@ module.exports = function (socketio) {
       console.log('user disconnected __ connected users: ' + connectedUsers);
     });
 
-
-  });
 }
