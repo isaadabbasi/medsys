@@ -7,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var io = require('socket.io');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/medical');
+mongoose.connect('mongodb://127.0.0.1:27017/medical');  
+
+
 var users = require('./routes/users');
 var ascoltatori = require('ascoltatori');
 var root_route = require('./routes/root_route');
